@@ -134,6 +134,7 @@ const MatchStatsModal = ({ game, onClose, showAlert }) => {
                 </div>
                 {/* Share confirmation message */}
                 {showShareConfirmation && <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-lg text-sm">Link Copied!</div>}
+                }
             </div>
         </div>
     );
