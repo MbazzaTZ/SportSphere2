@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, MessageSquare, Share2, Play, Music } from 'lucide-react';
-import VerifiedBadge from './VerifiedBadge'; // Assuming VerifiedBadge is in the same directory or accessible
-import VideoTypeBadge from './VideoTypeBadge'; // Assuming VideoTypeBadge is in the same directory or accessible
+import VerifiedBadge from './VerifiedBadge';
+import VideoTypeBadge from './VideoTypeBadge';
 
 /**
  * VideoCard Component
@@ -14,12 +14,6 @@ import VideoTypeBadge from './VideoTypeBadge'; // Assuming VideoTypeBadge is in 
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const VideoCard = ({ video, onUserClick, usersData }) => {
-    // Lookup user data based on the video's userId
-    const user = usersData[video.userId];
-
-    // If user data is not found, return null to prevent rendering an incomplete video card
-    if (!user) return null;
-
     // State for like status and count
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(video.likes);
@@ -29,6 +23,12 @@ const VideoCard = ({ video, onUserClick, usersData }) => {
     const [showHeart, setShowHeart] = useState(false);
     // State to control the visibility of the "Link Copied!" confirmation
     const [showShareConfirmation, setShowShareConfirmation] = useState(false);
+
+    // Lookup user data based on the video's userId
+    const user = usersData[video.userId];
+
+    // If user data is not found, return null to prevent rendering an incomplete video card
+    if (!user) return null;
 
     /**
      * Toggles the like status of the video and updates the like count.

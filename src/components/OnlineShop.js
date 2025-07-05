@@ -3,7 +3,7 @@ import { ShoppingCart, Search, ArrowLeft } from 'lucide-react';
 import ShopProductCard from './ShopProductCard';
 import ShopModal from './ShopModal';
 import PaymentModal from './PaymentModal';
-import { shopTeams, shopMatches, shopProducts, azamTvData, bestOffers } from '../mockData'; // Import shop data from mockData.js
+import { shopTeams, shopMatches, shopProducts, azamTvData, bestOffers } from '../data/mockData';
 
 /**
  * Utility function to format odds (copied from original App.js for self-containment)

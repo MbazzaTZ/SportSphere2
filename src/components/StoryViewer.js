@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, UserCheck, Shield, Star, Mic, Heart, Clipboard, Briefcase, BarChart3 } from 'lucide-react';
-import { mockStories, verificationTiers } from '../mockData'; // Import mockStories and verificationTiers from mockData.js
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { mockStories, verificationTiers } from '../data/mockData';
 
 // VerifiedBadge Component (Copied for self-containment, ideally would be imported)
 const VerifiedBadge = ({ tier }) => {
@@ -19,7 +19,6 @@ const VerifiedBadge = ({ tier }) => {
     );
 };
 
-
 /**
  * StoryViewer Component
  * Displays stories in a full-screen viewer, similar to social media stories.
@@ -35,6 +34,18 @@ const VerifiedBadge = ({ tier }) => {
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClick, usersData }) => {
+    // Ref for the progress bar element
+    const progressBarRef = useRef(null);
+
+    // Callback to handle automatic progression to the next story
+    const autoAdvanceStory = useCallback(() => {
+        // Mark the current story as viewed (simulated)
+        if (stories[activeIndex]) {
+            stories[activeIndex].viewed = true;
+        }
+        onNext(); // Call the parent's onNext function
+    }, [activeIndex, onNext, stories]);
+
     // If no active story, or activeIndex is out of bounds, return null
     if (activeIndex === null || activeIndex < 0 || activeIndex >= stories.length) {
         return null;
@@ -42,18 +53,6 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
 
     const currentStory = stories[activeIndex];
     const user = usersData[currentStory.userId]; // Get user data for the current story's user
-
-    // Ref for the progress bar element
-    const progressBarRef = useRef(null);
-
-    // Callback to handle automatic progression to the next story
-    const autoAdvanceStory = useCallback(() => {
-        // Mark the current story as viewed (simulated)
-        if (currentStory) {
-            currentStory.viewed = true;
-        }
-        onNext(); // Call the parent's onNext function
-    }, [currentStory, onNext]);
 
     // useEffect for story auto-progression and progress bar animation
     useEffect(() => {

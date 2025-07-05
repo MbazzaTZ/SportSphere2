@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoCard from './VideoCard';
-import { mockVideos } from '../mockData'; // Import mockVideos from mockData.js
+import { mockVideos } from '../data/mockData';
 
 /**
  * HighlightsHub Component

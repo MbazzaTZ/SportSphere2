@@ -19,14 +19,14 @@ import { X, ThumbsUp, ThumbsDown, Share2 } from 'lucide-react';
  * @param {function} props.showAlert - Function to display an alert message.
  */
 const MatchStatsModal = ({ game, onClose, showAlert }) => {
-    // If no game object is provided, don't render the modal
-    if (!game) return null;
-
     // State for like and dislike status
     const [isLiked, setIsLiked] = useState(false);
     const [isDisliked, setIsDisliked] = useState(false);
     // State to control the visibility of the "Link Copied!" confirmation
     const [showShareConfirmation, setShowShareConfirmation] = useState(false);
+
+    // If no game object is provided, don't render the modal
+    if (!game) return null;
 
     /**
      * Handles sharing the match statistics. Attempts to use Web Share API,

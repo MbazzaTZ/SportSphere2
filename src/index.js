@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Mail, Bell, Trophy, Menu, Shield, Users, ShoppingCart, Award, Plus } from 'lucide-react';
+import { Mail, Bell, Trophy, Menu, Shield, ShoppingCart, Award, Plus, Video, Radio, Briefcase } from 'lucide-react';
 
 // Import Data
 import { verificationTiers, allUsersById, mockStories, mockPosts, mockVideos, mockProContent, initialLiveGames, mockLiveBets } from './data/allData';
@@ -34,6 +34,8 @@ import OrdersPage from './components/OrdersPage';
 import ProfilePage from './components/ProfilePage';
 import EditProfileModal from './components/EditProfileModal';
 import StoryViewer from './components/StoryViewer';
+import SportsFeed from './components/SportsFeed';
+import LiveBettingModal from './components/LiveBettingModal';
 
 export default function App() {
     const [activeTab, setActiveTab] = useState('Feed');

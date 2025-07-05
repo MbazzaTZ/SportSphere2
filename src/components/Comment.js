@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
-import VerifiedBadge from './VerifiedBadge'; // Assuming VerifiedBadge is in the same directory or accessible
+import VerifiedBadge from './VerifiedBadge';
 
 /**
  * Comment Component
@@ -13,18 +13,18 @@ import VerifiedBadge from './VerifiedBadge'; // Assuming VerifiedBadge is in the
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const Comment = ({ comment, onUserClick, usersData }) => {
-    // Lookup user data based on the comment's userId
-    const user = usersData[comment.userId];
-
-    // If user data is not found, return null to prevent rendering an incomplete comment
-    if (!user) return null;
-
     // State to manage the user's reaction to the comment (null, 'liked', 'disliked')
     const [reaction, setReaction] = useState(null);
     // State for the number of likes, initialized from comment data or 0
     const [likeCount, setLikeCount] = useState(comment.likes || 0);
     // State for the number of dislikes, initialized from comment data or 0
     const [dislikeCount, setDislikeCount] = useState(comment.dislikes || 0);
+
+    // Lookup user data based on the comment's userId
+    const user = usersData[comment.userId];
+
+    // If user data is not found, return null to prevent rendering an incomplete comment
+    if (!user) return null;
 
     /**
      * Handles the user reacting (liking/disliking) to the comment.

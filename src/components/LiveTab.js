@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LiveGameCard from './LiveGameCard';
 import LiveBettingCard from './LiveBettingCard';
 import LiveMatchScreen from './LiveMatchScreen';
-import { initialLiveGames, mockLiveBets } from '../mockData'; // Import data from mockData.js
+import { initialLiveGames, mockLiveBets } from '../data/mockData';
 
 /**
  * Utility function to format odds (copied from original App.js for self-containment)

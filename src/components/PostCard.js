@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Heart, MessageSquare, Share2, MoreHorizontal, X, Plus, Bookmark } from 'lucide-react';
-import VerifiedBadge from './VerifiedBadge'; // Assuming VerifiedBadge is in the same directory or accessible
-import PlatformIcon from './PlatformIcon'; // Assuming PlatformIcon is in the same directory or accessible
-import CommentSection from './CommentSection'; // Assuming CommentSection is in the same directory or accessible
+import VerifiedBadge from './VerifiedBadge';
+import PlatformIcon from './PlatformIcon';
+import CommentSection from './CommentSection';
 
 /**
  * Utility function to format time ago (copied from original App.js)
@@ -43,12 +43,6 @@ const formatTimeAgo = (isoString) => {
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAlert, usersData }) => {
-    // Lookup user data based on the post's userId
-    const user = usersData[post.userId];
-
-    // If user data is not found, return null to prevent rendering an incomplete post
-    if (!user) return null;
-
     // State for like status and count
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes);
@@ -58,6 +52,12 @@ const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAler
     const [showShareConfirmation, setShowShareConfirmation] = useState(false);
     // State to control the visibility of the comment section
     const [showComments, setShowComments] = useState(false);
+
+    // Lookup user data based on the post's userId
+    const user = usersData[post.userId];
+
+    // If user data is not found, return null to prevent rendering an incomplete post
+    if (!user) return null;
 
     /**
      * Toggles the like status of the post and updates the like count.

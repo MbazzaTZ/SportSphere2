@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import ChannelMessageCard from './ChannelMessageCard';
-import { mockProContent } from '../mockData'; // Import mockProContent from mockData.js
+import { mockProContent } from '../data/mockData';
 
 /**
  * ProZone Component

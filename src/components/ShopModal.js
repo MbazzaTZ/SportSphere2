@@ -12,16 +12,16 @@ import { X } from 'lucide-react';
  * @param {function} props.onAddToCart - Callback function to add the selected item to the cart.
  */
 const ShopModal = ({ item, onClose, onAddToCart }) => {
-    // If no item is provided, don't render the modal
-    if (!item) return null;
-
     // State to manage selected details (color, size, ticket type, membership tier)
     const [details, setDetails] = useState({
-        color: item.colors ? item.colors[0] : null, // Default to first color if available
-        size: item.sizes ? item.sizes[0] : null,     // Default to first size if available
-        ticketType: item.type === 'ticket' ? 'Regular' : null, // Default ticket type
-        membershipTier: item.membershipTiers ? item.membershipTiers[0] : null, // Default membership tier
+        color: item?.colors ? item.colors[0] : null, // Default to first color if available
+        size: item?.sizes ? item.sizes[0] : null,     // Default to first size if available
+        ticketType: item?.type === 'ticket' ? 'Regular' : null, // Default ticket type
+        membershipTier: item?.membershipTiers ? item.membershipTiers[0] : null, // Default membership tier
     });
+
+    // If no item is provided, don't render the modal
+    if (!item) return null;
 
     /**
      * Handles changes to product details (e.g., selecting a different color, size, or tier).
