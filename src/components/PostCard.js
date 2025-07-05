@@ -134,6 +134,7 @@ const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAler
             <div className="bg-white dark:bg-black rounded-lg border border-gray-200 dark:border-gray-800 mb-6 max-w-lg mx-auto relative">
                 {/* Share confirmation message */}
                 {showShareConfirmation && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/70 text-white px-4 py-2 rounded-lg">Link Copied!</div>}
+                }
                 
                 {/* Post Header */}
                 <div className="flex items-center p-3">
@@ -206,6 +207,7 @@ const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAler
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 max-w-lg mx-auto overflow-hidden border border-gray-200 dark:border-gray-700 relative">
             {/* Share confirmation message */}
             {showShareConfirmation && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/70 text-white px-4 py-2 rounded-lg">Link Copied!</div>}
+            }
             
             <div className="p-4">
                 {/* Post Header */}
@@ -229,6 +231,7 @@ const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAler
                         </div>
                         {/* User Handle (if available) */}
                         {user.handle && <p className="text-gray-500 dark:text-gray-400 text-sm">{user.handle}</p>}
+                        }
                         {/* Time ago */}
                         <p className="text-sm text-gray-500 dark:text-gray-400">{timeAgo}</p>
                     </div>
@@ -262,6 +265,7 @@ const PostCard = ({ post, onUserClick, onFollowToggle, isFollowingUser, showAler
             </div>
             {/* Comment Section (conditionally rendered) */}
             {showComments && <div className="px-4 pb-2"><CommentSection comments={post.commentsData} commentCount={post.comments} onUserClick={onUserClick} usersData={usersData} /></div>}
+            }
         </div>
     );
 };
