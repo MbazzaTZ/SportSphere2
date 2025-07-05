@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { mockStories, verificationTiers } from '../data/allData';
+import { X, ChevronLeft, ChevronRight, UserCheck, Shield, Star, Mic, Heart, Clipboard, Briefcase, BarChart3 } from 'lucide-react';
+import { mockStories, verificationTiers } from '../mockData'; // Import mockStories and verificationTiers from mockData.js
 
 // VerifiedBadge Component (Copied for self-containment, ideally would be imported)
 const VerifiedBadge = ({ tier }) => {
@@ -19,6 +19,7 @@ const VerifiedBadge = ({ tier }) => {
     );
 };
 
+
 /**
  * StoryViewer Component
  * Displays stories in a full-screen viewer, similar to social media stories.
@@ -35,10 +36,10 @@ const VerifiedBadge = ({ tier }) => {
  */
 const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClick, usersData }) => {
     // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
-    // Ref for the progress bar element
+    // The conditional return should come AFTER all hook calls.
     const progressBarRef = useRef(null);
 
-    // Define currentStory and user outside of hooks, but after props are destructured
+    // Define currentStory and user outside of hooks, but after props are destrcutured
     // and before the conditional return, so they are available for useCallback's dependency array.
     const currentStory = stories[activeIndex];
     const user = usersData[currentStory?.userId]; // Use optional chaining in case currentStory is undefined before initial render
@@ -48,7 +49,7 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
             // Note: Mutating props directly (currentStory.viewed = true) is generally not recommended
             // in React for state management. For a real app, you'd manage 'viewed' status
             // in the parent component's state (e.g., in App.js mockStories).
-            currentStory.viewed = true;
+            currentStory.viewed = true; //
         }
         onNext();
     }, [currentStory, onNext]);
