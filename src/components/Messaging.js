@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search, Plus } from 'lucide-react';
 import MessageItem from './MessageItem';
-import { mockMessages } from '../data/mockData';
+import { mockMessages } from '../data/allData';
 
 /**
  * Messaging Component

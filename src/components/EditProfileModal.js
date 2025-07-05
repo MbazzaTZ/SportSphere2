@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, User, MapPin, Link as LinkIcon, Edit, Image as ImageIcon } from 'lucide-react';
+import { X, Image as ImageIcon } from 'lucide-react';
 
 /**
  * EditProfileModal Component
@@ -25,10 +25,6 @@ const EditProfileModal = ({ user, onClose, onSave, showAlert }) => {
         // Add other fields you might want to make editable
     });
 
-    // States to simulate file uploads for avatar and cover
-    const [newAvatarFile, setNewAvatarFile] = useState(null);
-    const [newCoverFile, setNewCoverFile] = useState(null);
-
     // Update editableUser if the user prop changes (e.g., if the modal is reused for a different user)
     useEffect(() => {
         setEditableUser({
@@ -40,8 +36,6 @@ const EditProfileModal = ({ user, onClose, onSave, showAlert }) => {
             avatar: user.avatar,
             cover: user.cover,
         });
-        setNewAvatarFile(null); // Clear file inputs on user change
-        setNewCoverFile(null);
     }, [user]);
 
     /**
@@ -61,7 +55,6 @@ const EditProfileModal = ({ user, onClose, onSave, showAlert }) => {
     const handleAvatarChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            setNewAvatarFile(file);
             // Simulate displaying the new image immediately
             setEditableUser(prev => ({ ...prev, avatar: URL.createObjectURL(file) }));
         }
@@ -75,7 +68,6 @@ const EditProfileModal = ({ user, onClose, onSave, showAlert }) => {
     const handleCoverChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            setNewCoverFile(file);
             // Simulate displaying the new image immediately
             setEditableUser(prev => ({ ...prev, cover: URL.createObjectURL(file) }));
         }

@@ -2,16 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LiveGameCard from './LiveGameCard';
 import LiveBettingCard from './LiveBettingCard';
 import LiveMatchScreen from './LiveMatchScreen';
-import { initialLiveGames, mockLiveBets } from '../data/mockData';
-
-/**
- * Utility function to format odds (copied from original App.js for self-containment)
- * @param {number} odds - The odds value.
- * @returns {string} - Formatted odds string (e.g., "+150", "-110").
- */
-const formatOdds = (odds) => {
-    return odds > 0 ? `+${odds.toFixed(0)}` : odds.toFixed(0);
-};
+import { initialLiveGames, mockLiveBets } from '../data/allData';
 
 /**
  * LiveTab Component

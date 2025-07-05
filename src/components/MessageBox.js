@@ -1,5 +1,4 @@
 import React from 'react';
-import { X } from 'lucide-react'; // Assuming X icon is used for close button, if not, it can be removed.
 
 /**
  * MessageBox Component

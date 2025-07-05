@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { mockStories, verificationTiers } from '../data/mockData';
+import { mockStories, verificationTiers } from '../data/allData';
 
 // VerifiedBadge Component (Copied for self-containment, ideally would be imported)
 const VerifiedBadge = ({ tier }) => {
