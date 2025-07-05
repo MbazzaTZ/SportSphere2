@@ -14,6 +14,7 @@ import VideoTypeBadge from './VideoTypeBadge';
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const VideoCard = ({ video, onUserClick, usersData }) => {
+    // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
     // State for like status and count
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(video.likes);

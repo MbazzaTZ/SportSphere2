@@ -12,6 +12,7 @@ import { X } from 'lucide-react';
  * @param {function} props.onAddToCart - Callback function to add the selected item to the cart.
  */
 const ShopModal = ({ item, onClose, onAddToCart }) => {
+    // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
     // State to manage selected details (color, size, ticket type, membership tier)
     const [details, setDetails] = useState({
         color: item?.colors ? item.colors[0] : null, // Default to first color if available
@@ -77,16 +78,12 @@ const ShopModal = ({ item, onClose, onAddToCart }) => {
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Color:</label>
                                 <select onChange={(e) => handleDetailChange('color', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 mt-1">
                                     {item.colors.map(color => <option key={color} value={color}>{color}</option>)}
-                                    )
-                                    }
                                 </select>
                             </div>
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Size:</label>
                                 <select onChange={(e) => handleDetailChange('size', e.target.value)} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 mt-1">
                                     {item.sizes.map(size => <option key={size} value={size}>{size}</option>)}
-                                    )
-                                    }
                                 </select>
                             </div>
                         </>
@@ -109,8 +106,6 @@ const ShopModal = ({ item, onClose, onAddToCart }) => {
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Membership Tier:</label>
                             <select onChange={(e) => handleDetailChange('membershipTier', item.membershipTiers.find(t => t.name === e.target.value))} className="w-full p-2 border rounded-md bg-white dark:bg-gray-700 mt-1">
                                 {item.membershipTiers.map(tier => <option key={tier.name} value={tier.name}>{tier.name} ({tier.duration}) - TSh {tier.price.toLocaleString()}</option>)}
-                                )
-                                }
                             </select>
                         </div>
                     )}

@@ -19,6 +19,7 @@ import { X, ThumbsUp, ThumbsDown, Share2 } from 'lucide-react';
  * @param {function} props.showAlert - Function to display an alert message.
  */
 const MatchStatsModal = ({ game, onClose, showAlert }) => {
+    // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
     // State for like and dislike status
     const [isLiked, setIsLiked] = useState(false);
     const [isDisliked, setIsDisliked] = useState(false);
@@ -133,7 +134,6 @@ const MatchStatsModal = ({ game, onClose, showAlert }) => {
                 </div>
                 {/* Share confirmation message */}
                 {showShareConfirmation && <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-lg text-sm">Link Copied!</div>}
-                }
             </div>
         </div>
     );

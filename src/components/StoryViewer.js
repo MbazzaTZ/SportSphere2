@@ -34,41 +34,35 @@ const VerifiedBadge = ({ tier }) => {
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClick, usersData }) => {
+    // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
     // Ref for the progress bar element
     const progressBarRef = useRef(null);
 
-    // Callback to handle automatic progression to the next story
-    const autoAdvanceStory = useCallback(() => {
-        // Mark the current story as viewed (simulated)
-        if (stories[activeIndex]) {
-            stories[activeIndex].viewed = true;
-        }
-        onNext(); // Call the parent's onNext function
-    }, [activeIndex, onNext, stories]);
-
-    // If no active story, or activeIndex is out of bounds, return null
-    if (activeIndex === null || activeIndex < 0 || activeIndex >= stories.length) {
-        return null;
-    }
-
+    // Define currentStory and user outside of hooks, but after props are destructured
+    // and before the conditional return, so they are available for useCallback's dependency array.
     const currentStory = stories[activeIndex];
-    const user = usersData[currentStory.userId]; // Get user data for the current story's user
+    const user = usersData[currentStory?.userId]; // Use optional chaining in case currentStory is undefined before initial render
 
-    // useEffect for story auto-progression and progress bar animation
+    const autoAdvanceStory = useCallback(() => {
+        if (currentStory) {
+            // Note: Mutating props directly (currentStory.viewed = true) is generally not recommended
+            // in React for state management. For a real app, you'd manage 'viewed' status
+            // in the parent component's state (e.g., in App.js mockStories).
+            currentStory.viewed = true;
+        }
+        onNext();
+    }, [currentStory, onNext]);
+
     useEffect(() => {
-        // Set a timeout for automatic story progression
-        const timer = setTimeout(autoAdvanceStory, 5000); // Each story lasts 5 seconds
+        const timer = setTimeout(autoAdvanceStory, 5000);
 
-        // Reset and animate the progress bar
         if (progressBarRef.current) {
             progressBarRef.current.style.animationDuration = '5s';
             progressBarRef.current.style.animationPlayState = 'running';
-            // Trigger reflow to restart animation if already at 100%
             void progressBarRef.current.offsetWidth;
             progressBarRef.current.style.width = '100%';
         }
 
-        // Cleanup function to clear the timer when the component unmounts or active story changes
         return () => {
             clearTimeout(timer);
             if (progressBarRef.current) {
@@ -76,9 +70,8 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
                 progressBarRef.current.style.width = '0%';
             }
         };
-    }, [activeIndex, autoAdvanceStory]); // Re-run effect when activeIndex changes
+    }, [activeIndex, autoAdvanceStory]);
 
-    // Handle keyboard navigation (left/right arrow keys)
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowRight') {
@@ -91,20 +84,21 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [onNext, onPrev]);
 
+    // Now, you can safely return early if the activeIndex is invalid.
+    if (activeIndex === null || activeIndex < 0 || activeIndex >= stories.length || !currentStory || !user) {
+        return null;
+    }
+
     return (
         <div className="fixed inset-0 bg-black z-[90] flex items-center justify-center">
-            {/* Story content area */}
             <div className="relative w-full h-full max-w-md max-h-screen overflow-hidden flex items-center justify-center">
-                {/* Story Image */}
                 <img
                     src={currentStory.imageUrl}
                     alt="Story"
                     className="w-full h-full object-contain"
                 />
 
-                {/* Top Overlay with Progress Bars and User Info */}
                 <div className="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-black/70 to-transparent">
-                    {/* Progress bars for all stories */}
                     <div className="flex space-x-1 mb-3">
                         {stories.map((story, index) => (
                             <div key={story.id} className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
@@ -117,7 +111,6 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
                         ))}
                     </div>
 
-                    {/* User Info and Close Button */}
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2 cursor-pointer" onClick={() => onUserClick(user.id)}>
                             <img src={user.avatar} alt={user.user} className="w-8 h-8 rounded-full border-2 border-white" />
@@ -132,7 +125,6 @@ const StoryViewer = ({ stories, activeIndex, onClose, onNext, onPrev, onUserClic
                     </div>
                 </div>
 
-                {/* Navigation Buttons (Left/Right) */}
                 <button
                     onClick={onPrev}
                     className="absolute left-0 top-1/2 -translate-y-1/2 p-3 text-white bg-black/30 hover:bg-black/50 rounded-r-lg z-10"

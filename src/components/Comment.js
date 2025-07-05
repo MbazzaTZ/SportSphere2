@@ -13,6 +13,7 @@ import VerifiedBadge from './VerifiedBadge';
  * @param {object} props.usersData - A dictionary of all user data, keyed by userId.
  */
 const Comment = ({ comment, onUserClick, usersData }) => {
+    // ALL HOOKS MUST BE CALLED UNCONDITIONALLY AT THE TOP LEVEL
     // State to manage the user's reaction to the comment (null, 'liked', 'disliked')
     const [reaction, setReaction] = useState(null);
     // State for the number of likes, initialized from comment data or 0

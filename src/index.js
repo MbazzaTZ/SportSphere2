@@ -123,7 +123,6 @@ export default function App() {
         <button onClick={() => setActiveTab(tabName)} className={`flex items-center w-full px-4 py-3 rounded-lg transition-colors ${activeTab === tabName ? 'bg-gray-200 dark:bg-gray-700 font-bold' : 'text-gray-600 dark:text-gray-300'}` + (tabName === 'OnlineShop' || tabName === 'Orders' ? ' hidden md:flex' : '') + ` hover:bg-gray-200 dark:hover:bg-gray-700`}>
             {React.cloneElement(icon, { strokeWidth: activeTab === tabName ? 2.5 : 2 })}
             {isSidebarOpen && <span className="ml-4 font-semibold">{label}</span>}
-            }
         </button>
     );
 
@@ -153,7 +152,6 @@ export default function App() {
                             <NavItem icon={<Award size={28} />} label="Orders" tabName="Orders" />
                         </nav>
                         <div className="p-4 border-t border-gray-200 dark:border-gray-800"><button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="flex items-center w-full px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"><Menu size={28}/>{isSidebarOpen && <span className="ml-4 font-semibold">Menu</span>}</button></div>
-                        }
                     </aside>
                     <main className="flex-1 flex flex-col h-screen bg-gray-50 dark:bg-black">
                         <header className="bg-white dark:bg-black h-16 flex items-center justify-between px-6 border-b border-gray-200 dark:border-gray-800 z-20 flex-shrink-0 md:hidden"><h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-orange-400">SportSphere</h1><div className="flex items-center space-x-4"><button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"><Bell size={24} /></button><button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"><Mail size={24} /></button></div></header>
