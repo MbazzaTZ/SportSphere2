@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportSphere</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="%PUBLIC_URL%/index.css">
+    <style>
+        /* Custom CSS for animations and scrollbar hiding */
+        @keyframes progress { from { width: 0%; } to { width: 100%; } }
+        .animate-progress { animation: progress linear; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-up { animation: fade-in-up 0.3s ease-out; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-marquee { animation: marquee 8s linear infinite; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script src="%PUBLIC_URL%/index.js"></script>
+</body>
+</html>
